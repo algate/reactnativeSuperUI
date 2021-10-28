@@ -63,7 +63,7 @@ flipper-0.99.0.tar.gz；
 ### 配置app的图标和名称：(如果要区分debug和release版本继续看下方相关问题说明)
 制作ICON图标(https://icon.wuruihong.com/)
 
-<----------------------------------------------------------------->
+----------------------------------------------------------------
 ## 额外配置：
 ### 1. 使用echarts需要 配置Android 
 
@@ -75,12 +75,13 @@ flipper-0.99.0.tar.gz；
 ### 2. 配置多个RN启动项目（这个不重要，可以略过）
 
 (1). react-native start --port=8082
+
 (2). 永久修改Server端口
 ```json
 {
 	"one": "node_modules/react-native/local-cli/server/server.js 下修改 8081 => 80**",
 	"two": "XCode 打开项目",
-	"three-ios":{ 
+	"three-ios":[ 
 		// 1. 可以借助 Show the Find navigator 
 		// 2. 或者修改下列文件
 		RCTWebSocketExecutor.m
@@ -88,12 +89,12 @@ flipper-0.99.0.tar.gz；
 		RCTBundleURLProvider.m
 		RCTInspectorDevServerHelper.mm
 		RCTPackagerConnectionBridgeConfig.m
-	},
-	"three-android":{
+	],
+	"three-android":[
 		// 1. 可以通过调试工具修改 - Debug server host & port for device
 		// 2. 或者修改下列文件
 		AndroidInfoHelpers.java
-	},
+	],
 }
 ```
 
@@ -111,13 +112,16 @@ ic_launcher_round => ic_launcher
 resValue "string", "app_name", "SuperUI.DEBUG"
 ```json
 {	
-	"1. debug和release下增加": `resValue "string", "app_name", "*****.DEBUG"`
-	"2. android/app/src/main/res/values/strings.xml": `注释掉app_name的相关配置`
+	"1. debug和release下增加": 'resValue "string", "app_name", "*****.DEBUG"'
+	"2. android/app/src/main/res/values/strings.xml": "注释掉app_name的相关配置"
 }
 ```
 ### 6. 打包正式包（更详细具体的，签名之类的相关看官网说明）
 android文件夹下执行：
+```cmd
 ./gradlew assembleRelease
+```
 安装包在文件夹下：h2c_app/android/app/build/outputs/apk/release
+
 安装包安装到外部设备： adb -s ****** install app-release.apk
 
