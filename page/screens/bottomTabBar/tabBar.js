@@ -7,7 +7,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from '../screenHome/home';
-import HomeGuide from '../screenHome/homeGuide';
 import HomeScreenCenter from '../screenCenter/center';
 import NoteScreen from '../screenNote/note';
 
@@ -39,7 +38,6 @@ export default () => {
       tabBarInactiveTintColor: 'gray',
     })}>
     <Tab.Screen name="TabHome" component={HomeScreen} options={{ headerShown: false }} />
-    <Tab.Screen name="TabHomeGuide" component={HomeGuide} options={{ headerShown: false }} />
     <Tab.Screen name="TabHomeCenter" component={HomeScreenCenter} options={{ headerShown: false }} />
     <Tab.Screen name="TabNote" component={NoteScreen} />
   </Tab.Navigator>

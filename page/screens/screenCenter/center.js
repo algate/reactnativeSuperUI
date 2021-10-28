@@ -23,20 +23,25 @@ faker.locale = "zh_CN";
 
 // lottie-json动画，好用的组件收藏，特效动画实例……
 
-const TITLE = ['AnimateJsonB', 'AnimatedFlatList'];
+const TITLE = ['AnimateJsonB', 'AnimatedFlatList', 'AntPanResponder', 'AnimatedGallery'];
 const INTRO = [
   'JSON动画 - B',
-  '列表滚动动画 - Flatlist'
+  '列表滚动动画 - Flatlist',
+  '手势滑动动画 - PanResponder',
+  '画廊轮播动画 - Flatlist'
 ];
 const NPM = [
   'https://www.npmjs.com/package/lottie-react-native',
-  'https://space.bilibili.com/53564048?spm_id_from=333.788.b_765f7570696e666f.2'
+  'https://space.bilibili.com/53564048?spm_id_from=333.788.b_765f7570696e666f.2',
+  ''
 ]; 
 const TOOLS = [
   'lottie-react-view',
+  'Flatlist & Animated',
+  'PanResponder & Animated',
   'Flatlist & Animated'
 ];
-const NAVIGATION = ['AnimatedLottieJson', 'AnimatedEffects'];
+const NAVIGATION = ['AnimatedLottieJson', 'AnimatedEffects', 'AnimatedHomeGuide', 'AnimatedGallery'];
 
 const DATA = [...Array(30).keys()].map((_, i) => {
   return {
@@ -55,7 +60,6 @@ const DATA = [...Array(30).keys()].map((_, i) => {
     navigation: NAVIGATION[i]
   };
 })
-console.log(DATA);
 // const BG_IMG = faker.image.imageUrl();
 const SPACING = 20;
 const AVATAR_SIZE = 70;

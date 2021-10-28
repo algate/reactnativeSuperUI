@@ -28,14 +28,6 @@ export default ({navigation}) => {
       autoPlay
       loop={true}
     />
-    {/* <LottieView
-      style={{
-        width: '100%'
-      }}
-      source={require('../../static/json/B.json')}
-      autoPlay
-      loop={true}
-    /> */}
     <Button title="导航到首页"
       onPress={() => {
         navigation.navigate('Tabs', {

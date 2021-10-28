@@ -50,10 +50,12 @@ export default () => {
             style={[
               StyleSheet.absoluteFillObject,
               {
-                opacity
+                opacity,resizeMode: 'cover',
+                height,
+                width
               }
             ]}
-            blurRadius={5}
+            blurRadius={10}
           ></Animated.Image>
         })}
       </View>
