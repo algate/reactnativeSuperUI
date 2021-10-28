@@ -41,7 +41,8 @@ const TOOLS = [
   'PanResponder & Animated',
   'Flatlist & Animated'
 ];
-const NAVIGATION = ['AnimatedLottieJson', 'AnimatedEffects', 'AnimatedHomeGuide', 'AnimatedGallery'];
+// const NAVIGATION = ['AnimatedLottieJson', 'AnimatedEffects', 'AnimatedHomeGuide', 'AnimatedGallery'];
+const NAVIGATION = ['AnimatedLottieJson', 'AnimatedEffects', '', 'AnimatedGallery'];
 
 const DATA = [...Array(30).keys()].map((_, i) => {
   return {
