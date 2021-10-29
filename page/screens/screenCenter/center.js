@@ -45,14 +45,13 @@ const TOOLS = [
   'PanResponder;Animated',
   'FlatList;Animated'
 ];
-// const NAVIGATION = ['AnimatedLottieJson', 'AnimatedFlatList', 'AnimatedHomeGuide', 'AnimatedGallery'];
+// const NAVIGATION = ['ComponentsTools', 'AnimatedLottieJson', 'AnimatedFlatList', 'AnimatedHomeGuide', 'AnimatedGallery'];
 const NAVIGATION = ['ComponentsTools', 'AnimatedLottieJson', 'AnimatedFlatList', '', 'AnimatedGallery'];
 
 const DATA = [...Array(TITLE.length).keys()].map((_, i) => {
   return {
     key: faker.datatype.uuid(),
     image: faker.image.avatar(),
-    
     color: faker.internet.color(),
     title: TITLE[i],
     intro: INTRO[i],
@@ -146,11 +145,10 @@ export default ({ navigation }) => {
               <Text style={{fontSize: 18, opacity: .7, marginTop: 10, marginBottom: 8}} 
                 numberOfLines={1}
               >{item.intro}</Text>
-              {/* <Text style={{fontSize: 16, opacity: .8, color: item.color, fontWeight: '600'}}>{item.tools || item.address}</Text> */}
               <View style={{flexWrap: 'wrap', flexDirection: 'row'}}>
                 {/* 想要换行包一层 - 设置flexWrap */}
                 {item.tools.split(';').map((tool) => {
-                  return <View style={{
+                  return <View key={tool} style={{
                     flexDirection: 'row',
                     padding: 6,
                     backgroundColor: '#70E4FF',

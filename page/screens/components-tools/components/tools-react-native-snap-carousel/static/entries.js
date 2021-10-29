@@ -2,8 +2,7 @@ export const ENTRIES1 = [
     {
         title: 'Beautiful and dramatic Antelope Canyon',
         subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'http://shp.qpic.cn/ishow/2735022611/1551150494_-695593207_2194_sProdImgNo_3.jpg/0',
-        illustration: 'https://game.gtimg.cn/images/yxzj/img201606/heroimg/107/107-smallskin-1.jpg'
+        illustration: 'http://shp.qpic.cn/ishow/2735022611/1551150494_-695593207_2194_sProdImgNo_3.jpg/0'
     },
     {
         title: 'Earlier this morning, NYC',
@@ -36,8 +35,7 @@ export const ENTRIES2 = [
     {
         title: 'Favourites landscapes 1',
         subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'http://shp.qpic.cn/ishow/2735011111/1547177102_704174346_5257_sProdImgNo_3.jpg/0',
-        illustration: 'https://game.gtimg.cn/images/yxzj/img201606/heroimg/107/107-smallskin-1.jpg'
+        illustration: 'http://shp.qpic.cn/ishow/2735011111/1547177102_704174346_5257_sProdImgNo_3.jpg/0'
     },
     {
         title: 'Favourites landscapes 2',
