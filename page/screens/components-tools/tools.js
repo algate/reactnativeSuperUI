@@ -16,7 +16,6 @@ import {
 } from 'react-native';
 import styled from 'styled-components/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
 import Clipboard from '@react-native-community/clipboard';
 import Toast from 'react-native-root-toast';
 import faker from 'faker';
@@ -123,6 +122,16 @@ const DATA = [
     language: '二维码生成工具',
     descript: 'A QR Code generator for React Native based on react-native-svg and javascript-qrcode.',
     github: 'https://github.com/awesomejerry/react-native-qrcode-svg'
+  },
+  {
+    uuid: faker.datatype.uuid(),
+    id: faker.datatype.number(),
+    name: 'victory-native',
+    language: 'RN中制作图表',
+    descript: 'In this guide, we’ll show you how to get started with Victory Native and the React Native SVG dependency running in your React Native app for iOS and Android.',
+    github: 'https://github.com/FormidableLabs/victory-native',
+    navigation: 'tools-victory-native',
+    open_url: 'https://formidable.com/open-source/victory/docs/native'
   }
 ];
 const SPACING = 20;

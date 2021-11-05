@@ -5,14 +5,25 @@
  */
 
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+  useColorScheme,
+} from 'react-native';
+import { DarkTheme,
+  DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import RootStack from './page/config/route';
 
-export default function App() {
+import { ThemeProvider } from './page/components/context/theme';
+export default () => {
+  const colorScheme = useColorScheme();
   return (
-    <NavigationContainer>
-      <RootStack />
-    </NavigationContainer>
+    <ThemeProvider>
+      <NavigationContainer>
+        <RootStack theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme} />
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
  

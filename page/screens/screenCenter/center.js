@@ -17,6 +17,9 @@ import {
 const { width, height } = Dimensions.get('screen');
 import BG_IMG from './../../static/images/1.jpeg';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import Clipboard from '@react-native-community/clipboard';
+import Toast from 'react-native-root-toast';
 import faker from 'faker';
 
 faker.seed(10);
@@ -47,17 +50,24 @@ const TOOLS = [
 ];
 // const NAVIGATION = ['ComponentsTools', 'AnimatedLottieJson', 'AnimatedFlatList', 'AnimatedHomeGuide', 'AnimatedGallery'];
 const NAVIGATION = ['ComponentsTools', 'AnimatedLottieJson', 'AnimatedFlatList', '', 'AnimatedGallery'];
+const SOURCE = [
+  '',
+  '',
+  'https://www.bilibili.com/video/BV1Tz4y12739?spm_id_from=333.1007.top_right_bar_window_custom_collection.content.click',
+  '',
+  'https://www.bilibili.com/video/BV15h411X7R1/?spm_id_from=333.788.recommend_more_video.-1'
+];
 
 const DATA = [...Array(TITLE.length).keys()].map((_, i) => {
   return {
     key: faker.datatype.uuid(),
-    image: faker.image.avatar(),
     color: faker.internet.color(),
     title: TITLE[i],
     intro: INTRO[i],
     npm: NPM[i],
     tools: TOOLS[i],
-    navigation: NAVIGATION[i]
+    navigation: NAVIGATION[i],
+    source: SOURCE[i]
   };
 })
 // const BG_IMG = faker.image.imageUrl();
@@ -163,6 +173,21 @@ export default ({ navigation }) => {
                   </View>
                 })}
               </View>
+              {/* 有navigation可以预览，否则无法预览 */}
+              {!!item.source && <TouchableOpacity
+                style={{flexDirection: 'row', marginTop: 8, justifyContent: 'flex-end', alignItems: 'center'}}
+                onPress={()=>{
+                  Clipboard.setString(item.open_url);
+                  Toast.show('链接复制成功', {position: Toast.positions.CENTER,});
+                }}
+              >
+                <Ionicons name={'link'} size={20} color={'#396'} />
+                <Text style={{
+                  color: '#396',
+                  marginLeft: 6,
+                  fontWeight: '500'
+                }}>{'特效外部连接'}</Text>
+              </TouchableOpacity>}
             </View>
           </TouchableOpacity>
         </Animated.View>
