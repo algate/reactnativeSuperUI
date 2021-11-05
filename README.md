@@ -3,7 +3,7 @@
 是不是还在为RN开发找相关合适的组件再发愁，Now，She is Coming！
 有部分效果图如下：
 
-<image src="shot1.png" style="width: 200px;"><image src="shot2.png" style="width: 200px;"><image src="shot3.png" style="width: 200px;"><image src="shot4.png" style="width: 200px;"><image src="shot5.png" style="width: 200px;">
+<image src="shot2.png" style="width: 200px;"/><image src="shot3.png" style="width: 200px;"/><image src="shot4.png" style="width: 200px;"/><image src="shot5.png" style="width: 200px;"/>
 
 本App名称为SuperUI，相关`react-native`和组件的版本在 `package.json` 查看。
 简单说明下：
