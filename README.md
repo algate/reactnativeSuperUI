@@ -152,3 +152,34 @@ android文件夹下执行：
 
 安装包安装到外部设备： adb -s ****** install app-release.apk
 
+### 7. react-native-video
+在Android上不能全屏，用法如下：
+```jsx
+<Video
+	resizeMode="cover"
+	style={{
+		position: 'absolute',
+		top: 0,
+		left: 0,
+		bottom: 0,
+		right: 0,
+	}} />
+
+```
+
+### 8. "reanimated-bottom-sheet": "^1.0.0-alpha.22" 组件需要安装下列两个组件，版本太高导致白屏
+2.0 - 白屏； 1.0 - 手势不支持；
+```json
+	// 直接安装
+	"react-native-gesture-handler": "^2.2.0",
+	"react-native-reanimated": "^2.3.1",
+```
+报如下 8.1 错误 <===> 可以按照 8.1 的方法 👌 了！
+#### 8.1 本项目新增加了一个组件 `gorhom/bottom-sheet`
+提示： Unsupported top level event type "onGestureHandlerStateChange" dispatched
+[有关onGestureHandlerStateChange的问题](https://github.com/software-mansion/react-native-gesture-handler/issues/320)
+处理办法 - 在入口文件index.js中添加如下代码： 
+```js
+import 'react-native-gesture-handler';
+```
+

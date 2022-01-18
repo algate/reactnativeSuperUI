@@ -9,20 +9,12 @@ import {
 import styled from 'styled-components/native';
 import BottomSheet from 'reanimated-bottom-sheet';
 
-class Home extends React.Component {
+class AnimatedBottomSheet extends React.Component {
   constructor(props) {
     super(props);
   }
 
   sheetRef = null;
-
-  componentDidMount() {
-    console.log('页面开始渲染');
-  }
-
-  componentWillUnmount() {
-    console.log('页面开始卸载了');
-  }
 
   renderContent = () => (
     <View
@@ -50,10 +42,10 @@ class Home extends React.Component {
             justifyContent: 'center',
           }}
         >
-          <Button
+          {/* <Button
             title="Open Bottom Sheet"
             onPress={() => this.sheetRef.snapTo(0)}
-          />
+          /> */}
         </View>
         <BottomSheet
           ref={ref => this.sheetRef = ref}
@@ -67,4 +59,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default AnimatedBottomSheet;

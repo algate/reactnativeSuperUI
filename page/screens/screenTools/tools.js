@@ -132,6 +132,37 @@ const DATA = [
     github: 'https://github.com/FormidableLabs/victory-native',
     navigation: 'tools-victory-native',
     open_url: 'https://formidable.com/open-source/victory/docs/native'
+  },
+  {
+    uuid: faker.datatype.uuid(),
+    id: faker.datatype.number(),
+    name: 'react-native-video',
+    language: 'RN中引入视频',
+    descript: 'A <Video> component for react-native, as seen in react-native-login!',
+    github: 'https://github.com/react-native-community/react-native-video#readme',
+    npm: 'https://www.npmjs.com/package/react-native-video',
+    navigation: 'tools-react-native-video',
+    open_url: ''
+  },
+  {
+    uuid: faker.datatype.uuid(),
+    id: faker.datatype.number(),
+    name: 'reanimated-bottom-sheet',
+    language: 'RN中引入底部折叠',
+    descript: 'Highly configurable component imitating native bottom sheet behavior, with fully native 60 FPS animations!',
+    github: 'https://github.com/osdnk/react-native-reanimated-bottom-sheet',
+    navigation: 'tools-reanimated-bottom-sheet',
+    open_url: ''
+  },
+  {
+    uuid: faker.datatype.uuid(),
+    id: faker.datatype.number(),
+    name: '@gorhom/bottom-sheet',
+    language: 'RN中引入底部折叠',
+    descript: 'A performant interactive bottom sheet with fully configurable options',
+    github: 'https://github.com/gorhom/react-native-bottom-sheet',
+    navigation: 'tools-react-native-bottom-sheet',
+    open_url: 'https://gorhom.github.io/react-native-bottom-sheet/'
   }
 ];
 const SPACING = 20;
@@ -141,7 +172,7 @@ const TextFontStyle = styled.Text`
 `;
 
 export default ({navigation}) => {
-  return <View>
+  return <SafeAreaView>
     <FlatList
       data={DATA}
       keyExtractor={item => item.uuid}
@@ -223,6 +254,7 @@ export default ({navigation}) => {
                 }}
               >
                 <Ionicons name={item.github ? 'logo-github' : 'ios-copy'} size={16} color={'#207BFF'} />
+                {/* GITHUB地址没有可以复制名称自行搜索 */}
                 <Text style={{
                   color: '#207BFF',
                   marginLeft: 6
@@ -298,5 +330,5 @@ export default ({navigation}) => {
       }}
     >
     </FlatList>
-  </View>
+  </SafeAreaView>
 }

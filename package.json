@@ -5,11 +5,12 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "start": "react-native start",
+    "start": "set PORT=9000 && react-native start",
     "test": "jest",
     "lint": "eslint ."
   },
   "dependencies": {
+    "@gorhom/bottom-sheet": "^4",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/clipboard": "^1.5.1",
     "@react-navigation/bottom-tabs": "^6.0.9",
@@ -19,14 +20,18 @@
     "lottie-react-native": "^4.1.3",
     "react": "17.0.2",
     "react-native": "0.66.1",
+    "react-native-gesture-handler": "^2.2.0",
     "react-native-linear-gradient": "^2.5.6",
+    "react-native-reanimated": "^2.3.1",
     "react-native-root-toast": "^3.2.1",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.8.0",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-svg": "^12.1.1",
     "react-native-vector-icons": "^8.1.0",
+    "react-native-video": "^5.2.0",
     "react-native-webview": "^11.14.1",
+    "reanimated-bottom-sheet": "^1.0.0-alpha.22",
     "styled-components": "^5.3.3",
     "victory-native": "^35.5.5"
   },

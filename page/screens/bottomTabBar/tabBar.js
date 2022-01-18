@@ -6,8 +6,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from '../screenHome/home';
-import HomeScreenCenter from '../screenCenter/center';
-import NoteScreen from '../screenNote/note';
+import AnimatedScreen from '../screenAnimated/animated';
+import ToolsScreen from '../screenTools/tools';
 import SettingScreen from '../screenSetting/setting';
 
 import { ThemeContext } from '../../components/context/theme';
@@ -19,7 +19,7 @@ export default (props) => {
   const [backgroundColor, setBackgroundColor] = useContext(ThemeContext);
   // const backgroundColor = "#ccc";
   return <Tab.Navigator
-    initialRouteName="TabHome"
+    initialRouteName="TabTools"
     screenOptions={({ route }) => ({
       // headerShown: false,
       tabBarIcon: ({ focused, color, size }) => {
@@ -28,14 +28,14 @@ export default (props) => {
         if (route.name === 'TabHome') {
           iconName = focused ? 'app-store-ios' : 'app-store';   
           return <FontAwesome name={iconName} size={size} color={color} />;
-        } else if (route.name === 'Setting') {
-          iconName = focused ?  'aperture' : 'aperture-outline';
-          return <Ionicons name={iconName} size={size} color={color} />;
-        } else if (route.name === 'TabHomeCenter') {
+        } else if (route.name === 'TabAnimated') {
           iconName = focused ?  'logo-apple' : 'logo-google-playstore';
           return <Ionicons name={iconName} size={size} color={color} />;
-        } else if (route.name === 'TabNote') {
+        } else if (route.name === 'TabTools') {
           iconName = focused ? 'leaf' : 'leaf-outline';
+          return <Ionicons name={iconName} size={size} color={color} />;
+        } else if (route.name === 'TabSetting') {
+          iconName = focused ?  'aperture' : 'aperture-outline';
           return <Ionicons name={iconName} size={size} color={color} />;
         }
       },
@@ -62,19 +62,9 @@ export default (props) => {
     >
       {props => <HomeScreen {...props} theme={theme} />}
     </Tab.Screen>
-    <Tab.Screen name="TabHomeCenter" component={HomeScreenCenter} options={{ headerShown: false }} />
-    <Tab.Screen name="TabNote" component={NoteScreen} 
-      options={{
-        headerTitleAlign: 'center',
-        headerStyle: {
-            backgroundColor: backgroundColor,
-        },
-        headerTitleStyle:{
-            color: '#fff',
-        }
-      }} 
-    />
-    <Tab.Screen name="Setting" component={SettingScreen} 
+    <Tab.Screen name="TabTools" component={ToolsScreen} options={{ headerShown: false }} />
+    <Tab.Screen name="TabAnimated" component={AnimatedScreen} options={{ headerShown: false }} />
+    <Tab.Screen name="TabSetting" component={SettingScreen} 
       options={{
         headerLeft: null,
         headerTitleAlign: 'center',

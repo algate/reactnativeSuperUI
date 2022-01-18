@@ -9,21 +9,26 @@ import Guide from '../screens/screenGuide/guide';
 // import animatedHomeGuide from '../screens/screenHome/homeGuide';
 import animatedLottieJson from '../screens/animated-effects/animated-lottie-json';
 import animatedFlatList from '../screens/animated-effects/animated-flatlist';
+import animatedFlatListLevel from '../screens/animated-effects/animated-flatlist-level';
 import animatedGallery from '../screens/animated-effects/animated-gallery';
+import networkOutline from '../screens/screenAnimated/network-outline';
 
-import componentsTools from '../screens/components-tools/tools';
-import tools_reactNativeSnapCarousel from '../screens/components-tools/components/tools-react-native-snap-carousel';
-import tools_reactNativeVectorIcons from '../screens/components-tools/components/tools-react-native-vector-icons';
-import tools_styledComponents from '../screens/components-tools/components/tools-styled-components';
-import tools_faker from '../screens/components-tools/components/tools-faker';
-import tools_moment from '../screens/components-tools/components/tools-moment';
-import tools_victoryNative from '../screens/components-tools/components/tools-victory-native';
+import tools_reactNativeSnapCarousel from '../screens/screenTools/components/tools-react-native-snap-carousel';
+import tools_reactNativeVectorIcons from '../screens/screenTools/components/tools-react-native-vector-icons';
+import tools_styledComponents from '../screens/screenTools/components/tools-styled-components';
+import tools_faker from '../screens/screenTools/components/tools-faker';
+import tools_moment from '../screens/screenTools/components/tools-moment';
+import tools_victoryNative from '../screens/screenTools/components/tools-victory-native';
+import tools_reactNativeVideo from '../screens/screenTools/components/tools-react-native-video';
+import tools_reanimatedBottomSheet from '../screens/screenTools/components/tools-reanimated-bottom-sheet';
+import tools_reactNativeBottomSheet from '../screens/screenTools/components/tools-react-native-bottom-sheet';
 
 const RootStack = createNativeStackNavigator();
 
 export default ({theme}) => {
   const [backgroundColor, setBackgroundColor] = useContext(ThemeContext);
   // const backgroundColor = "#ccc";
+  // 要想改变TABS的默认显示菜单 - 去TABS组件下区修改
   return <RootStack.Navigator initialRouteName="Tabs">
     {/* <RootStack.Screen name='Guide' component={Guide} 
       options={{
@@ -47,7 +52,7 @@ export default ({theme}) => {
     </RootStack.Screen>
 
 
-    {/* center特效工具集 */}
+    {/* center特效工具集 - 子菜单 */}
     {/* <RootStack.Screen name='AnimatedHomeGuide' component={animatedHomeGuide} 
       options={{
         headerShown: false,
@@ -60,21 +65,19 @@ export default ({theme}) => {
     /> */}
     <RootStack.Screen name='AnimatedLottieJson' component={animatedLottieJson} />
     <RootStack.Screen name='AnimatedFlatList' component={animatedFlatList} />
+    <RootStack.Screen name='AnimatedFlatListLevel' component={animatedFlatListLevel} />
     <RootStack.Screen name='AnimatedGallery' component={animatedGallery} />
+    <RootStack.Screen name='NetworkOutline' component={networkOutline} />
 
-    {/* RN组件工具库 */}
-    <RootStack.Screen name='ComponentsTools' component={componentsTools} 
-      options={{
-        headerStyle: {
-            backgroundColor: backgroundColor,
-        }
-      }}
-    />
+    {/* screenTools 工具库 - 子菜单 */}
     <RootStack.Screen name='tools-react-native-snap-carousel' component={tools_reactNativeSnapCarousel} />
     <RootStack.Screen name='tools-react-native-vector-icons' component={tools_reactNativeVectorIcons} />
     <RootStack.Screen name='tools-styled-components' component={tools_styledComponents} />
     <RootStack.Screen name='tools-faker' component={tools_faker} />
     <RootStack.Screen name='tools-moment' component={tools_moment} />
     <RootStack.Screen name='tools-victory-native' component={tools_victoryNative} />
+    <RootStack.Screen name='tools-react-native-video' component={tools_reactNativeVideo} />
+    <RootStack.Screen name='tools-reanimated-bottom-sheet' component={tools_reanimatedBottomSheet} />
+    <RootStack.Screen name='tools-react-native-bottom-sheet' component={tools_reactNativeBottomSheet} />
   </RootStack.Navigator>
 }

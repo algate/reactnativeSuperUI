@@ -27,35 +27,45 @@ faker.locale = "zh_CN";
 
 // lottie-json动画，好用的组件收藏，特效动画实例……
 
-const TITLE = ['RN组件库工具箱','AnimateJsonB', 'AnimatedFlatList', 'AntPanResponder', 'AnimatedGallery'];
+const TITLE = [
+  'AnimateJsonB', 
+  'AnimatedFlatList',
+  'AnimatedFlatListLevel',
+  'AntPanResponder', 
+  'AnimatedGallery', 
+  'NetworkOutline'
+];
 const INTRO = [
-  '组件工具箱 - Tools',
   'JSON动画 - lottie',
   '列表滚动动画 - Flatlist',
+  '画廊水平滚动动画 - Flatlist',
   '手势滑动动画 - PanResponder',
-  '画廊轮播动画 - Flatlist'
+  '画廊轮播动画 - Flatlist',
+  '网络断开链接'
 ];
-const NPM = [
-  'https://www.npmjs.com/package/lottie-react-native',
-  'https://space.bilibili.com/53564048?spm_id_from=333.788.b_765f7570696e666f.2',
-  '',
-  'forbid'
-]; 
 const TOOLS = [
-  'node_modules;components',
   'lottie-react-view;Json;AE',
   'FlatList;Animated',
+  'FlatList;Animated',
   'PanResponder;Animated',
-  'FlatList;Animated'
+  'FlatList;Animated',
+  'Network;Reload'
 ];
-// const NAVIGATION = ['ComponentsTools', 'AnimatedLottieJson', 'AnimatedFlatList', 'AnimatedHomeGuide', 'AnimatedGallery'];
-const NAVIGATION = ['ComponentsTools', 'AnimatedLottieJson', 'AnimatedFlatList', '', 'AnimatedGallery'];
+const NAVIGATION = [
+  'AnimatedLottieJson', 
+  'AnimatedFlatList', 
+  'AnimatedFlatListLevel', 
+  'forbid', 
+  'AnimatedGallery', 
+  'NetworkOutline'
+];
 const SOURCE = [
   '',
-  '',
   'https://www.bilibili.com/video/BV1Tz4y12739?spm_id_from=333.1007.top_right_bar_window_custom_collection.content.click',
+  'https://www.bilibili.com/video/BV1zX4y137vT?spm_id_from=333.999.0.0',
   '',
-  'https://www.bilibili.com/video/BV15h411X7R1/?spm_id_from=333.788.recommend_more_video.-1'
+  'https://www.bilibili.com/video/BV15h411X7R1/?spm_id_from=333.788.recommend_more_video.-1',
+  ''
 ];
 
 const DATA = [...Array(TITLE.length).keys()].map((_, i) => {
@@ -64,7 +74,6 @@ const DATA = [...Array(TITLE.length).keys()].map((_, i) => {
     color: faker.internet.color(),
     title: TITLE[i],
     intro: INTRO[i],
-    npm: NPM[i],
     tools: TOOLS[i],
     navigation: NAVIGATION[i],
     source: SOURCE[i]
@@ -140,12 +149,12 @@ export default ({ navigation }) => {
             }}
             onPress={() => {
               if(item.navigation) {
-                navigation.navigate(item.navigation)
-              } else {
-                if(item.npm === 'forbid') {
+                if(item.navigation === 'forbid') {
                   Alert.alert('此项禁止访问');
                   return;
                 }
+                navigation.navigate(item.navigation)
+              } else {
                 Alert.alert('跳转', '没有地址');
               }
             }}
@@ -177,7 +186,7 @@ export default ({ navigation }) => {
               {!!item.source && <TouchableOpacity
                 style={{flexDirection: 'row', marginTop: 8, justifyContent: 'flex-end', alignItems: 'center'}}
                 onPress={()=>{
-                  Clipboard.setString(item.open_url);
+                  Clipboard.setString(item.source);
                   Toast.show('链接复制成功', {position: Toast.positions.CENTER,});
                 }}
               >
