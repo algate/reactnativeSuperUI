@@ -1,3 +1,10 @@
+>特别注意⚠️：
+	本项目使用了 `reanimated-bottom-sheet` , 本组件需要安装关联组件 `react-native-reanimated`, 最新2.3.0 + 版本会出现各种问题 - 参考下列问题记录8.0；
+	1. 如果不想处理相关问题，或者不需要debug模式下调试该项目，则无需理会，项目会正常运行！
+	2. 如果需要debug模式调试，需要删除引用`reanimated-bottom-sheet`组件的页面才能正常调试；
+	3. 如果还想使用工具调试，还想使用bottom-sheet组件，有一种方法就是使用官方提供的Flipper调试工具（有个简单的方法<===>直接启用浏览器端的flipper-server）参考文档[flipper-server](https://fbflipper.com/docs/getting-started/index/)
+
+
 ![](SuperIcon.png)
 
 是不是还在为RN开发找相关合适的组件再发愁，Now，She is Coming！
@@ -166,20 +173,63 @@ android文件夹下执行：
 	}} />
 
 ```
-
 ### 8. "reanimated-bottom-sheet": "^1.0.0-alpha.22" 组件需要安装下列两个组件，版本太高导致白屏
-2.0 - 白屏； 1.0 - 手势不支持；
+debug模式下白屏；非debug下正常；
 ```json
 	// 直接安装
 	"react-native-gesture-handler": "^2.2.0",
 	"react-native-reanimated": "^2.3.1",
 ```
-报如下 8.1 错误 <===> 可以按照 8.1 的方法 👌 了！
-#### 8.1 本项目新增加了一个组件 `gorhom/bottom-sheet`
+
+>推荐使用以下这两个版本！！！😊
+"react-native-reanimated": "1.13.3",
+"react-native-gesture-handler": "^1.10.3",
+如果使用上述两个版本：
+安装 `@gorhom/bottom-sheet` 的版本为 `yarn add @gorhom/bottom-sheet@^2`
+
+除此之外：需要根据`react-native-gesture-handler`官方文档配置相关文件 
+
+#### 8.1 如下报错：`Unsupported top level event type "onGestureHandlerStateChange" dispatched`
 提示： Unsupported top level event type "onGestureHandlerStateChange" dispatched
 [有关onGestureHandlerStateChange的问题](https://github.com/software-mansion/react-native-gesture-handler/issues/320)
 处理办法 - 在入口文件index.js中添加如下代码： 
 ```js
 import 'react-native-gesture-handler';
 ```
+添加修改之后，Debug模式下 报如下 8.2 错误； 非debug模式下正常；
 
+	额外测试：
+		新组件【【【本项目新增加了一个组件 `gorhom/bottom-sheet`】】】
+
+#### 8.2 如下报错：`global.performance.now is not a function` （开启debug）
+[](https://github.com/gorhom/react-native-bottom-sheet/issues/771)
+
+2.3.1 - 2.2.4 之后 - debug模式下bottomsheet无法上下滑动；非debug下正常；
+
+	同时：【【【`gorhom/bottom-sheet`组件报错 - 提示不支持应该是版本的问题】】】
+
+#### 8.3 问题所在 [https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation/]
+上述为记录的问题： 在react-native-reanimated 的官方文档中
+```
+CAUTION
+Please note that Reanimated 2 doesn't support remote debugging, only Flipper can be used for debugging.
+<!-- reanimated 不支持远程调试 -->
+```
+
+#### 8.4 报错如下: `undefined is not an object (evaluating 'InnerNativeModule.installCoreFunctions'`
+上述问题记录： [https://github.com/software-mansion/react-native-reanimated/issues/2525]()
+
+"react-native-reanimated": "2.3.0" 版本下👌了，怪哉！！！
+但是依旧不能debug in browse
+#### 8.5 可以使用官方的Flipper工具调试
+
+#### 8.6 比较省事的办法： npx flipper-server
+
+### 9. 某种关于javac的报错
+```
+ 	buildToolsVersion rootProject.ext.buildToolsVersion
+	compileOptions {
+			sourceCompatibility JavaVersion.VERSION_1_8
+			targetCompatibility JavaVersion.VERSION_1_8
+	}
+```

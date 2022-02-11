@@ -130,6 +130,13 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "com.reactnativesuperui"
         minSdkVersion rootProject.ext.minSdkVersion
