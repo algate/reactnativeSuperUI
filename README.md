@@ -159,6 +159,15 @@ android文件夹下执行：
 
 安装包安装到外部设备： adb -s ****** install app-release.apk
 
+
+#### 6.1 打包到iphone
+首先要添加 development team。
+1. 选中项目
+2. TARGETS下选中其中一个版本
+3. Signing&Capabilities下选择Signing
+4. Team选择个人开发者就行了（failed：add account之后可能有时间延迟）
+5. 信任App: 设置 > 通用 > 设备管理 > 信心开发者
+
 ### 7. react-native-video
 在Android上不能全屏，用法如下：
 ```jsx
