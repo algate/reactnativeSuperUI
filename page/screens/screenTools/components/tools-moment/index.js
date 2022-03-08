@@ -1,7 +1,7 @@
 import React from 'react';
 import { WebView } from 'react-native-webview';
 
-class vectorIcons extends React.Component {
+class moment extends React.Component {
   constructor(props) {
     super(props);
     this.url = `https://momentjs.com/`;
@@ -16,4 +16,4 @@ class vectorIcons extends React.Component {
   }
 }
 
-export default vectorIcons;
+export default moment;

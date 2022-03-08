@@ -242,3 +242,5 @@ Please note that Reanimated 2 doesn't support remote debugging, only Flipper can
 			targetCompatibility JavaVersion.VERSION_1_8
 	}
 ```
+
+### 10. react-native-side-menu 侧边抽屉不能隐藏问题，一直未解决！😮‍💨

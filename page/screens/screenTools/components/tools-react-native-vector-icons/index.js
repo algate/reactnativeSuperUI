@@ -1,7 +1,7 @@
 import React from 'react';
 import { WebView } from 'react-native-webview';
 
-class vectorIcons extends React.Component {
+class RNVectorIcons extends React.Component {
   constructor(props) {
     super(props);
     this.url = `https://oblador.github.io/react-native-vector-icons/`;
@@ -16,4 +16,4 @@ class vectorIcons extends React.Component {
   }
 }
 
-export default vectorIcons;
+export default RNVectorIcons;

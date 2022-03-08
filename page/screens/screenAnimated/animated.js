@@ -14,7 +14,6 @@ import {
   SafeAreaView,
   Alert
 } from 'react-native';
-const { width, height } = Dimensions.get('screen');
 import BG_IMG from './../../static/images/1.jpeg';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 

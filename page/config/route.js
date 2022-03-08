@@ -22,6 +22,7 @@ import tools_victoryNative from '../screens/screenTools/components/tools-victory
 import tools_reactNativeVideo from '../screens/screenTools/components/tools-react-native-video';
 import tools_reanimatedBottomSheet from '../screens/screenTools/components/tools-reanimated-bottom-sheet';
 import tools_reactNativeBottomSheet from '../screens/screenTools/components/tools-react-native-bottom-sheet';
+import tools_reactNativeSideMenu from '../screens/screenTools/components/tools-react-native-side-menu';
 
 const RootStack = createNativeStackNavigator();
 
@@ -79,5 +80,6 @@ export default ({theme}) => {
     <RootStack.Screen name='tools-react-native-video' component={tools_reactNativeVideo} />
     <RootStack.Screen name='tools-reanimated-bottom-sheet' component={tools_reanimatedBottomSheet} />
     <RootStack.Screen name='tools-react-native-bottom-sheet' component={tools_reactNativeBottomSheet} />
+    <RootStack.Screen name='tools-react-native-side-menu' component={tools_reactNativeSideMenu} />
   </RootStack.Navigator>
 }

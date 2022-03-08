@@ -163,6 +163,16 @@ const DATA = [
     github: 'https://github.com/gorhom/react-native-bottom-sheet',
     navigation: 'tools-react-native-bottom-sheet',
     open_url: 'https://gorhom.github.io/react-native-bottom-sheet/'
+  },
+  {
+    uuid: faker.datatype.uuid(),
+    id: faker.datatype.number(),
+    name: 'react-native-side-menu',
+    language: 'RN中引入抽屉',
+    descript: 'Customizable side menu for react-native',
+    github: 'https://github.com/Kureev/react-native-side-menu',
+    navigation: 'tools-react-native-side-menu',
+    open_url: ''
   }
 ];
 const SPACING = 20;

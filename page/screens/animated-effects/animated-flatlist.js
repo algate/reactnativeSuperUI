@@ -13,7 +13,6 @@ import {
   SafeAreaViewBase,
   SafeAreaView
 } from 'react-native';
-const { width, height } = Dimensions.get('screen');
 import BG_IMG from './../../static/images/1.jpeg';
 import faker from 'faker';
 

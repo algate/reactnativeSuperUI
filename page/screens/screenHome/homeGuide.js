@@ -18,8 +18,6 @@ import LogoSvg2 from '../../static/home/2.svg';
 import LogoSvg3 from '../../static/home/3.svg';
 import LogoSvg4 from '../../static/home/4.svg';
 
-const {width, height} = Dimensions.get('window');
-
 const Mask = styled(Animated.View)`
   height: ${height}px;
   width: ${width}px;

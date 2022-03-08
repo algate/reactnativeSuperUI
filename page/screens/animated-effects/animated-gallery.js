@@ -13,8 +13,8 @@ import {
   Easing,
   SafeAreaView
 } from 'react-native';
-
-const { width, height } = Dimensions.get('screen');
+import { system } from '../../config/system';
+const { width, height } = system;
 import image1 from './../../static/images/1.jpeg'
 import image2 from './../../static/images/2.jpeg'
 import image3 from './../../static/images/3.jpeg'

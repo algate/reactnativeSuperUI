@@ -15,7 +15,7 @@ const OFFSET = 12;
 const WIDTH = Dimensions.get('window').width;
 const REPORT_WIDTH = WIDTH - (16 + OFFSET) * 2;
 
-export default class example extends Component {
+export default class RNSnapCarousel extends Component {
 
     constructor (props) {
         super(props);
