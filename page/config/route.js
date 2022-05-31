@@ -23,6 +23,18 @@ import tools_reactNativeVideo from '../screens/screenTools/components/tools-reac
 import tools_reanimatedBottomSheet from '../screens/screenTools/components/tools-reanimated-bottom-sheet';
 import tools_reactNativeBottomSheet from '../screens/screenTools/components/tools-react-native-bottom-sheet';
 import tools_reactNativeSideMenu from '../screens/screenTools/components/tools-react-native-side-menu';
+import tools_reactNativeImageCropPicker from '../screens/screenTools/components/tools-react-native-image-crop-picker';
+import tools_reactNativeCalendars from '../screens/screenTools/components/tools-react-native-calendars';
+
+// 日历 - start - 📅
+// import MenuScreen from '../screens/screenTools/components/tools-react-native-calendars/menuScreen';
+import CalendarsScreen from '../screens/screenTools/components/tools-react-native-calendars/calendarScreen';
+import AgendaScreen from '../screens/screenTools/components/tools-react-native-calendars/agendaScreen';
+import CalendarsList from '../screens/screenTools/components/tools-react-native-calendars/calendarsList';
+import HorizontalCalendarList from '../screens/screenTools/components/tools-react-native-calendars/horizontalCalendarList';
+import ExpandableCalendarScreen from '../screens/screenTools/components/tools-react-native-calendars/ExpandableCalendarScreen';
+import TimelineCalendarScreen from '../screens/screenTools/components/tools-react-native-calendars/timelineCalendarScreen';
+// 日历 - end - 📅
 
 const RootStack = createNativeStackNavigator();
 
@@ -81,5 +93,13 @@ export default ({theme}) => {
     <RootStack.Screen name='tools-reanimated-bottom-sheet' component={tools_reanimatedBottomSheet} />
     <RootStack.Screen name='tools-react-native-bottom-sheet' component={tools_reactNativeBottomSheet} />
     <RootStack.Screen name='tools-react-native-side-menu' component={tools_reactNativeSideMenu} />
+    <RootStack.Screen name='tools-react-native-image-crop-picker' component={tools_reactNativeImageCropPicker} />
+    <RootStack.Screen name='tools-react-native-calendars' component={tools_reactNativeCalendars} />
+      <RootStack.Screen name='Calendars' component={CalendarsScreen} />
+      <RootStack.Screen name='Agenda' component={AgendaScreen} />
+      <RootStack.Screen name='CalendarsList' component={CalendarsList} />
+      <RootStack.Screen name='HorizontalCalendarList' component={HorizontalCalendarList} />
+      <RootStack.Screen name='ExpandableCalendar' component={ExpandableCalendarScreen} />
+      <RootStack.Screen name='TimelineCalendar' component={TimelineCalendarScreen} />
   </RootStack.Navigator>
 }

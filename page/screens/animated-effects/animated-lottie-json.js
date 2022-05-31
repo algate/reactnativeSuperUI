@@ -16,7 +16,8 @@ import {
 
 // 加载Json动画
 import LottieView from 'lottie-react-native';
-const GuideJson = require('../../static/json/B.json');
+// const GuideJson = require('../../static/json/B.json');
+const GuideJson = require('../../static/json/complete.json');
 
 export default ({navigation}) => {
   return <SafeAreaView>

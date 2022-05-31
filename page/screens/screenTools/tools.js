@@ -173,8 +173,32 @@ const DATA = [
     github: 'https://github.com/Kureev/react-native-side-menu',
     navigation: 'tools-react-native-side-menu',
     open_url: ''
+  },
+  {
+    uuid: faker.datatype.uuid(),
+    id: faker.datatype.number(),
+    name: 'react-native-image-crop-picker',
+    language: 'RN中引入拍照和手机相册上传图片兼具图片剪切功能',
+    descript: 'iOS/Android image picker with support for camera, video, configurable compression, multiple images and cropping',
+    github: 'github.com/ivpusic/react-native-image-crop-picker',
+    navigation: 'tools-react-native-image-crop-picker',
+    open_url: ''
+  },
+  // 图片上传 ： react-native-image-crop-picker
+  // 图片预览 ： react-native-image-zoom-viewer
+  // SVG图表 ： react-native-svg-charts
+  // 侧滑组件 ： react-native-swipe-list-view
+  {
+    uuid: faker.datatype.uuid(),
+    id: faker.datatype.number(),
+    name: 'react-native-calendars',
+    language: 'RN中引入日历组件',
+    descript: 'This module includes various customizable React-Native calendar components.',
+    github: 'https://github.com/wix/react-native-calendars',
+    navigation: 'tools-react-native-calendars',
+    open_url: 'https://wix.github.io/react-native-calendars/'
   }
-];
+].reverse();
 const SPACING = 20;
 
 const TextFontStyle = styled.Text`
@@ -184,6 +208,7 @@ const TextFontStyle = styled.Text`
 export default ({navigation}) => {
   return <SafeAreaView>
     <FlatList
+      inverted
       data={DATA}
       keyExtractor={item => item.uuid}
       contentContainerStyle={{
@@ -212,7 +237,7 @@ export default ({navigation}) => {
               fontSize: 20,
               marginBottom: 12
             }}>{index + 1}. {item.name}</TextFontStyle>
-            <View style={{flexWrap: 'wrap'}}>
+            <View>
               {/* 想要换行包一层 - 设置flexWrap */}
               <View style={{
                 flexDirection: 'row',
@@ -220,14 +245,17 @@ export default ({navigation}) => {
                 backgroundColor: '#70E4FF',
                 borderRadius: 5,
                 marginBottom: 12,
-                alignItems: 'center'
+                alignItems: 'flex-start',
+                flex: 1
               }}>
                 <Ionicons style={{marginRight:4}} name={'pricetags-outline'} size={16} color={'#FF5A5D'} />
                 <Ionicons name={'language'} size={16} color={'#9D42FF'} />
                 <Text style={{
                   marginLeft: 6,
                   color: '#333',
-                  fontWeight: '500'}}>{item.language}</Text>
+                  fontWeight: '500',
+                  flex: 1
+                }}>{item.language}</Text>
               </View>
             </View>
             <Text numberOfLines={3}>{item.descript}</Text>

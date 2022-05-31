@@ -31,14 +31,6 @@ const Info = styled(Text)`
   font-size: 18px;
   margin-top: 12px;
 `;
-/* const Info = styled(Text).attrs(({theme}) => ({
-  color: theme.dark ? "#2dabff" : "#fff"
-}))`
-  color: ${props => props.theme.colors.text};
-  font-weight: 600;
-  font-size: 18px;
-  margin-top: 12px;
-`; */
 
 class LoadFailedView extends React.PureComponent {
   constructor(props) {
@@ -55,14 +47,6 @@ class LoadFailedView extends React.PureComponent {
     return (
       <Container>
         <BackgroundImage/>
-        {/* 
-          primary: "rgb(0, 122, 255)"
-          background: "rgb(242, 242, 242)"
-          card: "rgb(255, 255, 255)"
-          text: "rgb(28, 28, 30)"
-          border: "rgb(216, 216, 216)"
-          notification: "rgb(255, 59, 48)"
-        */}
         <Info theme={theme}>{titleTop}</Info>
         <Info theme={theme}>{titleBottom}</Info>
         <RetryButton onPress={() => onRetry && onRetry()}>
