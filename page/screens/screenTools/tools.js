@@ -178,16 +178,17 @@ const DATA = [
     uuid: faker.datatype.uuid(),
     id: faker.datatype.number(),
     name: 'react-native-image-crop-picker',
-    language: 'RN中引入拍照和手机相册上传图片兼具图片剪切功能',
+    language: 'RN中引入拍照和手机相册上传图片兼具图片剪切功能(pod install)',
     descript: 'iOS/Android image picker with support for camera, video, configurable compression, multiple images and cropping',
     github: 'github.com/ivpusic/react-native-image-crop-picker',
     navigation: 'tools-react-native-image-crop-picker',
     open_url: ''
   },
-  // 图片上传 ： react-native-image-crop-picker
   // 图片预览 ： react-native-image-zoom-viewer
   // SVG图表 ： react-native-svg-charts
   // 侧滑组件 ： react-native-swipe-list-view
+  // 日期选择器 ： react-native-modal-datetime-picker
+  // 选择器： @expo/react-native-action-sheet
   {
     uuid: faker.datatype.uuid(),
     id: faker.datatype.number(),

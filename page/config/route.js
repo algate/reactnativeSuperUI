@@ -34,6 +34,8 @@ import CalendarsList from '../screens/screenTools/components/tools-react-native-
 import HorizontalCalendarList from '../screens/screenTools/components/tools-react-native-calendars/horizontalCalendarList';
 import ExpandableCalendarScreen from '../screens/screenTools/components/tools-react-native-calendars/ExpandableCalendarScreen';
 import TimelineCalendarScreen from '../screens/screenTools/components/tools-react-native-calendars/timelineCalendarScreen';
+import MyCalendarWeekScreen from '../screens/screenTools/components/tools-react-native-calendars/MyCalendarWeekScreen'
+import MyCalendarMonthScreen from '../screens/screenTools/components/tools-react-native-calendars/MyCalendarMonthScreen'
 // 日历 - end - 📅
 
 const RootStack = createNativeStackNavigator();
@@ -101,5 +103,7 @@ export default ({theme}) => {
       <RootStack.Screen name='HorizontalCalendarList' component={HorizontalCalendarList} />
       <RootStack.Screen name='ExpandableCalendar' component={ExpandableCalendarScreen} />
       <RootStack.Screen name='TimelineCalendar' component={TimelineCalendarScreen} />
+      <RootStack.Screen name='MyCalendarWeek' component={MyCalendarWeekScreen} />
+      <RootStack.Screen name='MyCalendarMonth' component={MyCalendarMonthScreen} />
   </RootStack.Navigator>
 }

@@ -19,6 +19,8 @@ import RootStack from './page/config/route';
 
 import { ThemeProvider } from './page/components/context/theme';
 
+import { ActionSheetProvider } from './page/components/ActionSheet';
+
 const { UIManager } = NativeModules;
 
 UIManager.setLayoutAnimationEnabledExperimental &&
@@ -28,9 +30,11 @@ export default () => {
   const colorScheme = useColorScheme();
   return (
     <ThemeProvider>
-      <NavigationContainer>
-        <RootStack theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme} />
-      </NavigationContainer>
+      <ActionSheetProvider>
+        <NavigationContainer>
+          <RootStack theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme} />
+        </NavigationContainer>
+      </ActionSheetProvider>
     </ThemeProvider>
   );
 }

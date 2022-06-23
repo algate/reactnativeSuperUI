@@ -2,6 +2,24 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, View, ScrollView, TouchableOpacity, Text, Image, I18nManager, Switch} from 'react-native';
 import testIDs from './testIDs';
+import styled from 'styled-components';
+
+const CalendarBtnBox = styled.View`
+  flex-direction: row;
+  justify-content: space-around;
+`;
+
+const CalendarBtn = styled.TouchableOpacity`
+  padding: 8px 20px;
+  border-radius: 8px;
+  background: #00DCCA;
+`;
+
+const BtnText = styled.Text`
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+`;
 
 const appIcon = require('./img/logo.png');
 
@@ -10,7 +28,7 @@ const appIcon = require('./img/logo.png');
   weekView?: boolean;
 } */
 
-export default class MenuScreen extends Component<Props> {
+export default class MenuScreen extends Component {
 
   state = {
     forceRTL: false
@@ -21,7 +39,7 @@ export default class MenuScreen extends Component<Props> {
     this.setState({forceRTL: value});
   } */
 
-  renderEntry(testID: string, title: string, screen: string, options?: any) {
+  renderEntry(testID, title, screen, options) {
     return (
       <TouchableOpacity
         testID={testID}
@@ -50,12 +68,22 @@ export default class MenuScreen extends Component<Props> {
             <Text>Force RTL</Text>
             <Switch value={this.state.forceRTL} onValueChange={this.toggleRTL}/>
           </View> */}
+
+          {/* my-calendar */}
         </View>
+        <CalendarBtnBox>
+          <CalendarBtn onPress={() => {
+            navigation.navigate('MyCalendarWeek');
+          }}><BtnText>我的周日历</BtnText></CalendarBtn>
+          <CalendarBtn onPress={() => {
+            navigation.navigate('MyCalendarMonth');
+          }}><BtnText>我的月日历</BtnText></CalendarBtn>
+        </CalendarBtnBox>
       </ScrollView>
     );
   }
 
-  pushScreen(screen: string, props?: Props) {
+  pushScreen(screen, props) {
     const { navigation } = this.props;
     /* navigation.push(this.props.componentId, {
       component: {
@@ -78,7 +106,7 @@ export default class MenuScreen extends Component<Props> {
     navigation.navigate(screen, props);
   }
 
-  openScreen = (screen: string, options: any) => {
+  openScreen = (screen, options) => {
     this.pushScreen(screen, options);
   }
 }
