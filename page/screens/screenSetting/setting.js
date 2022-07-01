@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { FlatList, View, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { ThemeContext } from '../../components/context/theme';
 import AsyncStorage from '@react-native-community/async-storage';
+import { observer } from "mobx-react";
+
 const themeData = [
     {
         text: 'Default',
@@ -148,4 +150,28 @@ const styles = StyleSheet.create({
     },
 });
  
-export default SettingScreen;
+// export default SettingScreen;
+
+@observer
+class SettingClassScreen extends React.Component {
+
+	static options = {
+		title: 'TabSettings',
+    float: true,
+    headerTitleStyle: {
+      color: '#fff'
+    },
+    headerShown: false,
+    animationEnabled: false
+  };
+
+  constructor(props) {
+    super(props);
+  }
+	
+  render() {
+		return <SettingScreen/>
+	}
+}
+
+export default SettingClassScreen;

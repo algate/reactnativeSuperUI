@@ -20,6 +20,10 @@ import Clipboard from '@react-native-community/clipboard';
 import Toast from 'react-native-root-toast';
 import faker from 'faker';
 
+const ThemeBox = styled.View.attrs((props) => {
+  console.log(props);
+})``;
+
 const DATA = [
   {
     uuid: faker.datatype.uuid(),
@@ -208,6 +212,7 @@ const TextFontStyle = styled.Text`
 
 export default ({navigation}) => {
   return <SafeAreaView>
+    <ThemeBox/>
     <FlatList
       inverted
       data={DATA}

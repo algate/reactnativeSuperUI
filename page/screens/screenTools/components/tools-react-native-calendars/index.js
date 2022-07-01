@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, View, ScrollView, TouchableOpacity, Text, Image, I18nManager, Switch} from 'react-native';
 import testIDs from './testIDs';
 import styled from 'styled-components';
+import Dialog from '../../../../components/Dialog';
 
 const CalendarBtnBox = styled.View`
   flex-direction: row;
@@ -51,6 +52,17 @@ export default class MenuScreen extends Component {
     );
   }
 
+  goToMyScreen = (screen) => {
+    Dialog.alert({
+      title: '提示',
+      message: 'SORRY，您无权限访问 ～ 🈲️',
+      confirmText: '知道了'
+    });
+    return;
+    const { navigation } = this.props;
+    navigation.navigate(screen);
+  }
+
   render() {
     const { navigation } = this.props;
     return (
@@ -72,12 +84,14 @@ export default class MenuScreen extends Component {
           {/* my-calendar */}
         </View>
         <CalendarBtnBox>
-          <CalendarBtn onPress={() => {
-            navigation.navigate('MyCalendarWeek');
-          }}><BtnText>我的周日历</BtnText></CalendarBtn>
-          <CalendarBtn onPress={() => {
-            navigation.navigate('MyCalendarMonth');
-          }}><BtnText>我的月日历</BtnText></CalendarBtn>
+          <CalendarBtn 
+            onPress={() => this.goToMyScreen('MyCalendarWeek')}>
+            <BtnText>我的周日历</BtnText>
+          </CalendarBtn>
+          <CalendarBtn  
+            onPress={() => this.goToMyScreen('MyCalendarMonth')}>
+            <BtnText>我的月日历</BtnText>
+          </CalendarBtn>
         </CalendarBtnBox>
       </ScrollView>
     );

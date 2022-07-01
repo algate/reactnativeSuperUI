@@ -2,11 +2,18 @@ import React from 'react';
 import { computed, observable, observe, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
-import { Animated, Text, View, ScrollView } from 'react-native';
-import { createNavigationScrollAnimator } from '../../../../config/navigation';
+import { Animated, Text, View, ScrollView, Image } from 'react-native';
+import { createNavigationScrollAnimator, 
+  appStackNavigationOptions, 
+  NAVIGATION_TOP_AREA_HEIGHT 
+} from '../../../../config/navigation';
 import ActionSheet from '../../../../components/ActionSheet';
 import ImagePicker from 'react-native-image-crop-picker';
 import Dialog from '../../../../components/Dialog';
+import { TransitionPresets } from '@react-navigation/stack';
+import { system } from '../../../../config/system';
+import FontAwesome from 'react-native-vector-icons/FontAwesome5';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const UploadImage = styled.TouchableOpacity`
   width: 160px;
@@ -18,47 +25,55 @@ const UploadImage = styled.TouchableOpacity`
   margin: 16px;
 `
 
-const absoluteFill = `
+const RecordImages = styled(View)`
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 10px;
+`;
+
+const ImageBox = styled(View)`
+  flex-direction: row;
+  width: ${(system.width-16*4)/3 - 12}px;
+  height: ${(system.width-16*4)/3 - 12}px;
+  position: relative;
+  margin-right: 12px;
+  margin-bottom: 12px;
+`;
+
+const DeleteIcon = styled.TouchableOpacity`
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  right: -6px;
+  top: -6px;
+  background: #F86060;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
 `;
 
-const AnimatedBackground = styled(Animated.View)`
-  ${absoluteFill}
-`;
 @observer
-class Faker extends React.Component {
+class ImageCropPicker extends React.Component {
 
-  /* static options = props => {
-    console.log(props);
-    const opacity = scrollAnimator ? scrollAnimator.normalizedValue : 0;
-    let animateElementList = props?.animateElements;
-    if (!scrollAnimator) {
-      animateElementList = [];
-    } else if (isUndefined(animateElements)) {
-      animateElementList = float ? ['background', 'title'] : ['background'];
-    }
-    return {
-      headerBackground: () => (
-        <AnimatedBackground
-          style={{
-            opacity
-          }}
-        />
-      ),
-      headerTitleStyle: {
-        opacity: animateElementList.includes('title') ? opacity : 1
-      }
-    }
-  } */
+  static options = appStackNavigationOptions(({ route }) => ({
+    title: '图片上传组件',
+    float: true,
+    scrollAnimator: route.params?.scrollAnimator,    
+    backgroundStyle: {
+      backgroundColor: '#00DCCA'
+    },
+    // dark: true,
+    headerTitleStyle: {
+      color: '#fff'
+    },
+    ...TransitionPresets.ModalSlideFromBottomIOS
+  }));
 
   constructor(props) {
     super(props);
-    // this.scrollAnimator = createNavigationScrollAnimator();
-    // props.navigation.setParams({ scrollAnimator: this.scrollAnimator });
+    this.scrollAnimator = createNavigationScrollAnimator();
+    props.navigation.setParams({ scrollAnimator: this.scrollAnimator });
   }
 
   @observable images = [];
@@ -105,12 +120,11 @@ class Faker extends React.Component {
           }
         } catch (error) {
           if (error.code === 'E_PERMISSION_MISSING') {
-            // this._hud.show({ title: '无访问权限', duration: Hud.DURATION_SHORT });
+            console.warn('Error to pick image', error);
           } else if (error.code === 'E_PICKER_CANNOT_RUN_CAMERA_ON_SIMULATOR') {
-            // this._hud.show({ title: '请使用真机测试相机功能', duration: Hud.DURATION_SHORT });
+            console.warn('Error to pick image', error);
           } else if (error.code !== 'E_PICKER_CANCELLED') {
             console.warn('Error to pick image', error);
-            // this._hud.show({ title: `出现错误: ${error.code}`, duration: Hud.DURATION_SHORT });
           }
         }
 
@@ -126,17 +140,45 @@ class Faker extends React.Component {
       }
     );
   }
+
+  deleteImage = (index) => {
+    if (this.images.length === 1 ) {
+      Dialog.alert({
+        message: '至少保留一张照片',
+        confirmText: '我知道了'
+      });
+      return;
+    }
+    runInAction(() => {
+      this.images.splice(index, 1)
+    });
+  }
+
   render() {
     return (
-      <View style={{ height: '100%' }}>
-        <ScrollView>
+      <ScrollView {...this.scrollAnimator.scrollProps}>
+        <View style={{paddingTop: NAVIGATION_TOP_AREA_HEIGHT}}>
           <UploadImage onPress={this.onPressAddImage}>
             <Text style={{color: '#fff', fontSize: 18, fontWeight: '500'}}>上传</Text>
           </UploadImage>
-        </ScrollView>
-      </View>
+          <RecordImages>
+            {!!this.images.length ? this.images.map((image, index) => {
+              const localPath = image.path;
+              return (
+                <ImageBox key={image.path}>
+                  <Image style={{width: '100%', height: '100%', borderRadius: 8}} 
+                    source={{ uri: 'file://' + localPath }}></Image>
+                  <DeleteIcon onPress={() => this.deleteImage(index)}>
+                    <Ionicons name={'close'} size={16} color={'#fff'} />
+                  </DeleteIcon>
+                </ImageBox>
+              )
+            }) : null}
+          </RecordImages>
+        </View>
+      </ScrollView>
     );
   }
 }
 
-export default Faker;
+export default ImageCropPicker;

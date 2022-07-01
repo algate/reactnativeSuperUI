@@ -4,7 +4,6 @@
 	2. 如果需要debug模式调试，需要删除引用`reanimated-bottom-sheet`组件的页面才能正常调试；
 	3. 如果还想使用工具调试，还想使用bottom-sheet组件，有一种方法就是使用官方提供的Flipper调试工具（有个简单的方法<===>直接启用浏览器端的flipper-server）参考文档[flipper-server](https://fbflipper.com/docs/getting-started/index/)
 
-
 ![](SuperIcon.png)
 
 是不是还在为RN开发找相关合适的组件再发愁，Now，She is Coming！
@@ -238,9 +237,51 @@ Please note that Reanimated 2 doesn't support remote debugging, only Flipper can
 ```
  	buildToolsVersion rootProject.ext.buildToolsVersion
 	compileOptions {
-			sourceCompatibility JavaVersion.VERSION_1_8
-			targetCompatibility JavaVersion.VERSION_1_8
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
 	}
 ```
 
 ### 10. react-native-side-menu 侧边抽屉不能隐藏问题，一直未解决！😮‍💨
+
+### 11. 关于mobx和mobx-react
+如果mobx的版本大于6.0, 页面中使用@observable, runInAction之后页面不刷新；
+【这个问题折磨了我好久，以为是我的代码的问题，直到有一天……】
+mobx在mobx6之后，刷新界面需要设置`makeObservable(this)`这个函数，这样当数据刷新后，组件的界面才能刷新;「多么痛的领悟…👀」
+
+如果继续使用，需要降低mobx和mobx-react的版本号。
+```js
+// 本项目中使用的版本号为
+// "mobx": "4.9.3",
+// "mobx-react": "5.4.3",
+yarn add mobx@4.9.3
+yarn add mobx-react@5.4.3
+```
+
+### 12. react-native-image-crop-picker添加相机权限
+
+IOS模拟器下修改相关配置如下：
+1. xcode
+左边选择文件夹在项目下：`Info.plist`；
+右边`information Property List` 点击 + 号；
+```js
+Privacy - Photo Library Usage Description;
+Privacy - Microphone Usage Description
+Privacy - Camera Usage Description
+```
+2. xcode
+左边选择文件夹在项目下：`Libraries`;
+右击 `Add Files to " ****** " ` 选择项目文件夹下 `node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj` 添加;
+
+Android下自行百度解决吧！
+
+
+### 13. yarn ios 如何指定模拟器
+
+```js
+// 查看所有的模拟器
+xcrun simctl list devices
+// 在指定的模拟器下运行APP
+yarn ios --simulator "iPhone 12"
+// react-native run-ios --simulator "iPhone 12"
+```

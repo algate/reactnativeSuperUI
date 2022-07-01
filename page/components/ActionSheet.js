@@ -1,6 +1,6 @@
 'use strict';
 import React from 'react';
-import { withTheme } from 'styled-components';
+// import { withTheme } from 'styled-components';
 import {
   ActionSheetProvider as ExpoActionSheetProvider, connectActionSheet
 } from '@expo/react-native-action-sheet';
@@ -37,14 +37,14 @@ class _ActionSheetHelper extends React.Component {
   }
 }
 
-const ActionSheetHelper = withTheme(_ActionSheetHelper);
+// const ActionSheetHelper = withTheme(_ActionSheetHelper);
 
 export class ActionSheetProvider extends React.Component {
   render() {
     return (
       <ExpoActionSheetProvider>
         <React.Fragment>
-          <ActionSheetHelper/>
+          <_ActionSheetHelper/>
           {this.props.children}
         </React.Fragment>
       </ExpoActionSheetProvider>

@@ -73,7 +73,8 @@ export default (props) => {
         },
         headerTitleStyle:{
             color: '#fff',
-        }
+        },
+        ...SettingScreen.options
       }} 
     />
   </Tab.Navigator>
