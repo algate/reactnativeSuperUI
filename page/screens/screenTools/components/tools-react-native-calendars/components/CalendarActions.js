@@ -8,11 +8,11 @@ import { system } from '../../../../../config/system';
 import moment from 'moment';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const ActionLinearGradient = styled(LinearGradient).attrs({
-  colors: ['rgba(255,255,255,0.02)', 'rgba(255,255,255,0.1)'],
+const ActionLinearGradient = styled(LinearGradient).attrs(({opacity}) => ({
+  colors: opacity ? ['#202020', '#2b2b2b'] : ['rgba(255,255,255,0.02)', 'rgba(255,255,255,0.1)'],
   start: { x: 0, y: 1 },
   end: { x: 1, y: 1 }
-})`
+}))`
   height: 94px;
   padding: 16px;
   margin-left: 16px;
@@ -220,10 +220,10 @@ class CalendarActions extends React.Component {
   }
 
   renderAction = () => {
-    const { data } = this.props;
+    const { data, opacity } = this.props;
 
     const action = data.item;
-    const { type, state, date } = action;
+    const { type, state, date, progress, target, expired_finish } = action;
 
     const today = date === moment().format('YYYY-MM-DD');
     const showTip = state === 'active' && type === 'lack_of_sunlight';
@@ -234,7 +234,7 @@ class CalendarActions extends React.Component {
     const color = '#00DCCA';
 
     return <View style={{marginBottom: 16}}>
-      <ActionLinearGradient>
+      <ActionLinearGradient opacity={opacity}>
         <Left>
           <ActionIconContainer state={state}>
             <AntDesign name={'dingding'} size={25} color={color} />
@@ -255,7 +255,9 @@ class CalendarActions extends React.Component {
         <Right>
           { state === 'active' ?
             <AntDesign name={'arrowright'} size={16} color={'#fff'} /> :
-            <StatusText>{ACTION_STATUS[state]}</StatusText>
+            progress === target ? 
+            <StatusText>已完成</StatusText> : 
+            <StatusText>{ expired_finish ? '已补卡' : ACTION_STATUS[state] }</StatusText>
           }
         </Right>
       </ActionLinearGradient>
@@ -292,9 +294,11 @@ class CalendarActions extends React.Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, opacity } = this.props;
     return <>
-      <TouchableOpacity onPress={() => this._navigateToAction(data.item)}>
+      <TouchableOpacity
+        activeOpacity={opacity ? 1 : null}
+        onPress={() => this._navigateToAction(data.item)}>
         {this.renderAction()}
       </TouchableOpacity>
       {/* 检测行动 - 非行动中的弹层提示 */}

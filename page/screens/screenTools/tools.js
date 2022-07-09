@@ -190,7 +190,6 @@ const DATA = [
   },
   // 图片预览 ： react-native-image-zoom-viewer
   // SVG图表 ： react-native-svg-charts
-  // 侧滑组件 ： react-native-swipe-list-view
   // 日期选择器 ： react-native-modal-datetime-picker
   // 选择器： @expo/react-native-action-sheet
   {
@@ -202,6 +201,16 @@ const DATA = [
     github: 'https://github.com/wix/react-native-calendars',
     navigation: 'tools-react-native-calendars',
     open_url: 'https://wix.github.io/react-native-calendars/'
+  },
+  {
+    uuid: faker.datatype.uuid(),
+    id: faker.datatype.number(),
+    name: 'react-native-swipe-list-view',
+    language: 'RN中引入List侧滑组件',
+    descript: '左滑右滑组件',
+    github: 'https://github.com/jemise111/react-native-swipe-list-view#readme',
+    navigation: 'tools-react-native-swipe-list-view',
+    open_url: ''
   }
 ].reverse();
 const SPACING = 20;

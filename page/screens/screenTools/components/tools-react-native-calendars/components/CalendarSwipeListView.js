@@ -85,8 +85,8 @@ class CalendarSwipeListView extends React.Component {
       renderHiddenItem={renderHiddenItem}
       ListEmptyComponent={this.renderEmpty}
       leftOpenValue={72}
-      rightOpenValue={-150}
-      disableRightSwipe={false} //禁止右侧滑动
+      rightOpenValue={-72}
+      disableRightSwipe={true} //禁止右侧滑动
       disableLeftSwipe={false} //禁止左侧侧滑动（行动无效或者完成后 - 禁止滑动）
       previewFirstRow={false} //第一行具有滑动预览效果
       closeOnRowPress={false} //当按下一行时，关闭打开的行

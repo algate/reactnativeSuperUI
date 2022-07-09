@@ -26,6 +26,7 @@ import tools_reactNativeBottomSheet from '../screens/screenTools/components/tool
 import tools_reactNativeSideMenu from '../screens/screenTools/components/tools-react-native-side-menu';
 import tools_reactNativeImageCropPicker from '../screens/screenTools/components/tools-react-native-image-crop-picker';
 import tools_reactNativeCalendars from '../screens/screenTools/components/tools-react-native-calendars';
+import tools_reactNaviveSwipeListView from '../screens/screenTools/components/tools-react-native-swipe-list-view';
 
 // 日历 - start - 📅
 // import MenuScreen from '../screens/screenTools/components/tools-react-native-calendars/menuScreen';
@@ -37,6 +38,7 @@ import ExpandableCalendarScreen from '../screens/screenTools/components/tools-re
 import TimelineCalendarScreen from '../screens/screenTools/components/tools-react-native-calendars/timelineCalendarScreen';
 import MyCalendarWeekScreen from '../screens/screenTools/components/tools-react-native-calendars/MyCalendarWeekScreen'
 import MyCalendarMonthScreen from '../screens/screenTools/components/tools-react-native-calendars/MyCalendarMonthScreen'
+import MyCalendarWeekSwipeScreen from '../screens/screenTools/components/tools-react-native-calendars/MyCalendarWeekSwipeScreen'
 // 日历 - end - 📅
 
 const RootStack = createStackNavigator();
@@ -184,5 +186,15 @@ export default ({theme}) => {
         component={MyCalendarMonthScreen} 
         options={MyCalendarMonthScreen.options}
       />
+      <RootStack.Screen 
+        name='MyCalendarWeekSwipe' 
+        component={MyCalendarWeekSwipeScreen} 
+        options={MyCalendarWeekSwipeScreen.options}
+      />
+    <RootStack.Screen 
+      name='tools-react-native-swipe-list-view' 
+      component={tools_reactNaviveSwipeListView} 
+      options={tools_reactNaviveSwipeListView.options}
+    />
   </RootStack.Navigator>
 }

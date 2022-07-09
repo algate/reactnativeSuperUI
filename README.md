@@ -285,3 +285,7 @@ xcrun simctl list devices
 yarn ios --simulator "iPhone 12"
 // react-native run-ios --simulator "iPhone 12"
 ```
+
+### 14. install CocoaPods 被墙问题处理 - Podfile文件
+# source 'https://github.com/CocoaPods/Specs.git'
+source 'https://mirrors.bfsu.edu.cn/git/CocoaPods/Specs.git'

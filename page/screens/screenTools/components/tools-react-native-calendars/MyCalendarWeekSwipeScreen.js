@@ -10,7 +10,7 @@ import { createNavigationScrollAnimator,
   NAVIGATION_TOP_AREA_HEIGHT 
 } from '../../../../config/navigation';
 import { calendarData } from './calendarDate';
-import CalendarSwipeListView from './components/CalendarSwipeListView';
+import CalendarSwipeListViewTwo from './components/CalendarSwipeListViewTwo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 
@@ -137,21 +137,13 @@ const RecordsEntry = styled.Text`
   color: #00DCCA;
 `;
 
-const RowView = styled.TouchableOpacity`
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-`;
-
 
 @observer
-class MyCalendarWeekScreen extends React.Component {
+class MyCalendarWeekSwipeScreen extends React.Component {
 
   static options = appStackNavigationOptions(({ route }) => ({
     title: '日历',
-    float: true,
-    // scrollAnimator: route.params?.scrollAnimator,    
-    // ...TransitionPresets.ModalSlideFromBottomIOS
+    float: true
   }));
 
   constructor() {
@@ -160,38 +152,28 @@ class MyCalendarWeekScreen extends React.Component {
 
   @observable date = moment().format('YYYY-MM-DD');
   @observable month = moment().format('YYYY年MM月');
-  @observable _value = {};
 
   @computed get actions() {
-    // const { days } = this.props.calendarActions;
-    // console.log(JSON.stringify(days, null, 2));
-
     const days = calendarData;
+    const actionDays = days.find(day => day.date === this.date)?.actions ?? [];
 
-    console.log(days);
+    const actions = actionDays.map((action, index) => ({
+      ...action,
+      key: action.id
+    }));
 
-    const actions = days.find(day => day.date === this.date)?.actions ?? [];
     let sectionActions = [];
     const plannedActions = actions.filter(action => action.state === 'planned');
-    const todayUnfinishedActionsCache = actions.filter(action => action.state === 'active');
-
-    // 做动画使用的逻辑 - 不要删
-    const todayUnfinishedActions = todayUnfinishedActionsCache.map(a => ({...a, key: a.type}));
-
-    todayUnfinishedActions.forEach(a => {
-      runInAction(() => {
-        this._value[a.key] = new Animated.Value(0);
-      })
-    })
-
+    const todayUnfinishedActions = actions.filter(action => action.state === 'active');
     const todayFinishedActions = actions.filter(action => action.state === 'done');
     const todayExpiredActions = actions.filter(action => action.state === 'expired');
-    if(todayUnfinishedActions.length > 0) {
+
+    /* if(todayUnfinishedActions.length > 0) {
       sectionActions.push({
         title: '今日待办',
         data: todayUnfinishedActions,
         // 隐藏记录入口
-        record: false
+        record: true
       });
       this.hasNoTodayUnfinishedAcions = false;
     } else {
@@ -215,14 +197,63 @@ class MyCalendarWeekScreen extends React.Component {
         title: '已过期',
         data: todayExpiredActions
       })
-    }
+    } */
 
+    if(this.date === moment().format("YYYY-MM-DD")) {
+      if(todayUnfinishedActions.length > 0) {
+        sectionActions.push({
+          title: '今日待办',
+          key: 'active',
+          data: todayUnfinishedActions,
+          // 隐藏记录入口
+          record: true
+        });
+        this.hasNoTodayUnfinishedAcions = false;
+      } else {
+        this.hasNoTodayUnfinishedAcions = true;
+      }
+      if (todayFinishedActions.length > 0) {
+        sectionActions.push({
+          title: '已完成',
+          key: 'done',
+          data: todayFinishedActions
+        })
+      }
+    }
+    if(this.date < moment().format("YYYY-MM-DD")) {
+      if (todayExpiredActions.length > 0) {
+        sectionActions.push({
+          title: '已过期',
+          key: 'expired',
+          data: todayExpiredActions
+        })
+      }
+    }
+    if(this.date > moment().format("YYYY-MM-DD")) {
+      if(plannedActions.length > 0) {
+        sectionActions.push({
+          title: '未来待办',
+          key: 'planned',
+          data: plannedActions,
+          nofi: '不可提前完成'
+        });
+      }
+    }
+    console.log('refresh === ');
+
+    this.refresh = true;
     return sectionActions;
+  }
+
+  changeRefresh() {
+    console.log('changrefresh');
+    runInAction(() => {
+      this.refresh = false;
+    })
   }
 
   @computed get markedDates() {
     const markedDates = {};
-    // this.props.calendarActions.days.forEach(day => {
     const days = calendarData;
     days.forEach(day => {
       markedDates[day.date] = day.status;
@@ -240,45 +271,6 @@ class MyCalendarWeekScreen extends React.Component {
       this.month = moment(month.dateString).format('YYYY年MM月');
     });
   };
-
-  renderHiddenItem = (data, map) => {
-    const action = data.item;
-    const { type, state, date, target } = action;
-    
-    return <View style={{
-      flexDirection: 'row',
-      justifyContent: 'flex-end',
-      marginRight: 16,
-      overflow: 'hidden'
-    }}>
-      <Animated.View style={{
-        height: 94,
-        width: 64,
-        borderRadius: 8,
-        backgroundColor: 'rgba(0,220,202,0.2)',
-        position: 'relative',
-        left: this._value[data.item.key].interpolate({
-          inputRange: [-72, 0],
-          outputRange: [0, 64],
-          extrapolate: 'clamp',
-        })
-      }}>
-        <RowView>
-          <AntDesign name={'delete'} size={30} color={'#00DCCA'}/>
-        </RowView>
-      </Animated.View>
-    </View>
-  }
-
-  onSwipeValueChange = (swipeData) => {
-    // console.log('======swipeData', swipeData);
-    const { key, value } = swipeData;
-    if(key) {
-      // 滑动动画
-      // this.animatedValues[key].setValue(Math.abs(value));
-      this._value[key].setValue(value);
-    }
-  }
 
   renderSectionHeader = ({section}) => {
     return <View>
@@ -350,7 +342,10 @@ class MyCalendarWeekScreen extends React.Component {
                 theme={WEEK_THEME}
                 markedDates={this.markedDates}
                 dayComponent={({ date, state, marking, onPress }) => {
-                  return (<DayContainer onPress={() => onPress(date)}>
+                  return (<DayContainer onPress={() => {
+                      onPress(date);
+                      this.changeRefresh();
+                    }}>
                     <DayText state={state}>{date.day}</DayText>
                     <MarkContainer>
                       { marking === 'done'
@@ -369,17 +364,17 @@ class MyCalendarWeekScreen extends React.Component {
         {
           showHeaderRecord && this.renderHeaderRecord() 
         }
-        <CalendarSwipeListView
-          date={this.date}
-          actions={this.actions}
-          onSwipeValueChange={this.onSwipeValueChange}
-          renderSectionHeader={this.renderSectionHeader}
-          navigation={this.props.navigation}
-          renderHiddenItem={this.renderHiddenItem}
-        />
+        { this.refresh &&
+          <CalendarSwipeListViewTwo
+            date={this.date}
+            actions={this.actions}
+            renderSectionHeader={this.renderSectionHeader}
+            navigation={this.props.navigation}
+          />
+        }
       </View>
     );
   }
 }
 
-export default MyCalendarWeekScreen;
+export default MyCalendarWeekSwipeScreen;
