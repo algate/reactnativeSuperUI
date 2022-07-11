@@ -77,7 +77,7 @@ const InnerCircle = styled.View`
 const HomeGuide = (props) => {
   return (
     <SafeAreaView style={{backgroundColor: '#131313'}}>
-      <Text>说了禁止访问，请尊重下！👌</Text>
+      <Text>禁止访问，💩不要FACE！</Text>
     </SafeAreaView>
   );
 };

@@ -244,7 +244,7 @@ export default class RNSnapCarousel extends Component {
         const example1 = this.mainExample(1, 'Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots');
         const example2 = this.momentumExample(2, 'Momentum | Left-aligned | Active animation');
         const example3 = this.layoutExample(3, '"Stack of cards" layout | Loop', 'stack');
-        const example31 = this.layoutExampleCustom(3, '"Stack of cards" layout | Loop', 'stack');
+        const example31 = this.layoutExampleCustom(3, '"Stack of cards" layout | Loop | Custom', 'stack');
         const example4 = this.layoutExample(4, '"Tinder-like" layout | Loop', 'tinder');
         const example5 = this.customExample(5, 'Custom animation 1', 1, this._renderItem);
         const example6 = this.customExample(6, 'Custom animation 2', 2, this._renderLightItem);

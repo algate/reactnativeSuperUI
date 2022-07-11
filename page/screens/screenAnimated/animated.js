@@ -54,7 +54,7 @@ const NAVIGATION = [
   'AnimatedLottieJson', 
   'AnimatedFlatList', 
   'AnimatedFlatListLevel', 
-  'forbid', 
+  'AnimatedPanResponder', 
   'AnimatedGallery', 
   'NetworkOutline'
 ];
@@ -148,8 +148,8 @@ export default ({ navigation }) => {
             }}
             onPress={() => {
               if(item.navigation) {
-                if(item.navigation === 'forbid') {
-                  Alert.alert('此项禁止访问');
+                if(item.navigation === 'AnimatedPanResponder') {
+                  Alert.alert('查无此项');
                   return;
                 }
                 navigation.navigate(item.navigation)

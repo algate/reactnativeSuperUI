@@ -9,6 +9,7 @@ import {
   Animated,
   PanResponder,
 } from 'react-native';
+import { system } from '../config/system';
 
 import styled from 'styled-components/native';
 import LogoSvg from '../../static/home/logo.svg';
@@ -19,8 +20,8 @@ import LogoSvg3 from '../../static/home/3.svg';
 import LogoSvg4 from '../../static/home/4.svg';
 
 const Mask = styled(Animated.View)`
-  height: ${height}px;
-  width: ${width}px;
+  height: ${system.height}px;
+  width: ${system.width}px;
   background-color: #131313;
   position: absolute;
 `;
