@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import {
   StatusBar,
   FlatList,
@@ -19,6 +19,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Clipboard from '@react-native-community/clipboard';
 import Toast from 'react-native-root-toast';
 import faker from 'faker';
+import { ThemeContext } from '../../components/context/theme';
 
 const ThemeBox = styled.View.attrs((props) => {
   console.log(props);
@@ -220,6 +221,8 @@ const TextFontStyle = styled.Text`
 `;
 
 export default ({navigation}) => {
+  const theme = useContext(ThemeContext);
+  console.log(theme);
   return <SafeAreaView>
     <ThemeBox/>
     <FlatList

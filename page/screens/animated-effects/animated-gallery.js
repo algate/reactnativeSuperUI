@@ -101,12 +101,12 @@ export default ({navigation}) => {
           <Image
             source={item}
             style={
-              StyleSheet.absoluteFillObject,
+              [StyleSheet.absoluteFillObject,
               {
                 resizeMode: 'cover',
                 height,
                 width
-              }
+              }]
             }
           ></Image>
         </View>

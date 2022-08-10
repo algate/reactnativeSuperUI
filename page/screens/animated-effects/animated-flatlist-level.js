@@ -83,7 +83,6 @@ export default () => {
               height: 0,
             },
             shadowRadius: 20
-
           }}>
             <Image source={item} style={{
               width: imageW,

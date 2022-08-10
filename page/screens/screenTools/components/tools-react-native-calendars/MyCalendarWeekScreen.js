@@ -5,7 +5,7 @@ import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
 import { CalendarProvider, WeekCalendar } from 'react-native-calendars';
 import moment from 'moment';
-import { createNavigationScrollAnimator, 
+import { 
   appStackNavigationOptions, 
   NAVIGATION_TOP_AREA_HEIGHT 
 } from '../../../../config/navigation';

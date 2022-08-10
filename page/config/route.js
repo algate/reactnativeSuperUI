@@ -8,7 +8,7 @@ import { ThemeContext } from '../components/context/theme';
 
 import Guide from '../screens/screenGuide/guide';
 // import animatedHomeGuide from '../screens/screenHome/homeGuide';
-// import animatedPanResponder from ;   // 待完善……
+import animatedPanResponder from '../screens/animated-effects/animated-pan-responder';   // 待完善……
 import animatedLottieJson from '../screens/animated-effects/animated-lottie-json';
 import animatedFlatList from '../screens/animated-effects/animated-flatlist';
 import animatedFlatListLevel from '../screens/animated-effects/animated-flatlist-level';
@@ -82,10 +82,11 @@ export default ({theme}) => {
         detachPreviousScreen: false
       }}
     /> */}
-    {/* <RootStack.Screen 
+    <RootStack.Screen 
       name='AnimatedPanResponder' 
-      component={animatedPanResponder} 
-    /> */}
+      component={animatedPanResponder}
+      options={animatedPanResponder.options}
+    />
     <RootStack.Screen 
       name='AnimatedLottieJson' 
       component={animatedLottieJson} 

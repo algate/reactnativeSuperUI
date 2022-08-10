@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 import {
   SafeAreaView,
   Text,
-  Dimensions,
   Modal,
   View,
   Animated,
@@ -12,12 +11,12 @@ import {
 import { system } from '../config/system';
 
 import styled from 'styled-components/native';
-import LogoSvg from '../../static/home/logo.svg';
+import LogoSvg from '../static/home/logo.svg';
 // 手势四个状态svg
-import LogoSvg1 from '../../static/home/1.svg';
-import LogoSvg2 from '../../static/home/2.svg';
-import LogoSvg3 from '../../static/home/3.svg';
-import LogoSvg4 from '../../static/home/4.svg';
+import LogoSvg1 from '../static/home/1.svg';
+import LogoSvg2 from '../static/home/2.svg';
+import LogoSvg3 from '../static/home/3.svg';
+import LogoSvg4 from '../static/home/4.svg';
 
 const Mask = styled(Animated.View)`
   height: ${system.height}px;
@@ -94,12 +93,12 @@ const Forbid = (props) => {
     useNativeDriver: false
   }).start();
 
-  const greetingsHello = ['','很糟糕','一般般','还不错','非常棒'];
+  const greetingsHello = ['芭比Q了','很糟糕','GG','凡尔赛','绝绝子'];
   const greetingsHelloConfirm = [
-    ['休息一下吧','照顾好自己','记得爱自己'],
-    ['放松一下吧','早点休息哦','做点开心的事'],
-    ['状态不错哦','保持好心态','继续加油吧'],
-    ['元气满满啊','生龙活虎~','那可太好啦'],
+    ['该干嘛干嘛去吧','还有啥好担心的','想吃啥吃点啥吧'],
+    ['还有救','还能拯救下','还有一段时间'],
+    ['YYDS','我是神','干就完了'],
+    ['抽烟','喝酒','无所不能'],
   ];
 
   const [greetingHelloConfirm, setgreetingHelloConfirm] = useState('');
@@ -108,9 +107,6 @@ const Forbid = (props) => {
   
   const closeVisible = (status) => {
     if(status === 0) {
-      // 保存问候语
-      // synsoluManager.saveStatus(0);
-      // synsoluManager.saveGreeing('');
       navigation.navigate('Tabs', {
         screen: 'TabHomeCenter'
       });
@@ -119,9 +115,6 @@ const Forbid = (props) => {
       aniValueFeedback.setValue(0.5);
       const item = greetingsHelloConfirm[status-1][Math.floor(Math.random()*3)];
       setgreetingHelloConfirm(item);
-
-      // synsoluManager.saveStatus(status);
-      // synsoluManager.saveGreeing(item);
 
       Animated.timing(aniValueFeedback, {
         toValue: 1, 
@@ -144,7 +137,6 @@ const Forbid = (props) => {
   const [showGuideAE, setShowGuideAE] = useState(true);
 
   const setModalVisible = () => {
-    // userSpace.userGuideManager.updateData('synsolu');
     setShowGuideAE(false);
   }
 
@@ -173,7 +165,6 @@ const Forbid = (props) => {
     onPanResponderRelease: (_, { dy }) => {
       const lastValue = Math.max(0, Math.min(4, status - dy / 42));
       const toValue = Math.ceil(lastValue);
-      // synsoluManager.saveStatus(toValue);
       setStatus(toValue);
       Animated.timing(aniValue, {
         toValue,
@@ -357,13 +348,6 @@ const Forbid = (props) => {
             <InnerCircle/>
           </CircleButton>
         </Animated.View>
-        {/* 
-          引导层:
-          1. 触碰之后引导层隐藏
-          2. 只有第一次需要引导动画 ing
-          3. { !userSpace.userGuideManager.spectrumClicked && this.init ? <UserGuide /> : null }
-          4. !userSpace.userGuideManager.synsoluClicked && 
-         */}
       </Modal>
     </SafeAreaView>
   );

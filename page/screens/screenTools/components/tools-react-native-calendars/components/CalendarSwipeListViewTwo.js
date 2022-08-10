@@ -138,22 +138,36 @@ class CalendarSwipeListViewTwo extends React.Component {
     // 已过期
     const isExpired = state === 'expired';
 
+    // 未开始
+    const isPlanned = state === 'planned';
+
     // 已过期未打卡
-    const expiredFinish = state === 'expired' && !expired_finish;
+    const expiredNoFinish = state === 'expired' && !expired_finish;
 
     // 已补卡 和 已完成
-    const noPunchFlag = expired_finish || progress === target;
+    const hasDone = expired_finish || progress === target;
+
+    // 体脂秤和血压仪、检测
+    /* const isDeviceOrTest = detail.type === 'blood_pressure' ||
+      detail.type === 'fat_scale' ||
+      detail.type === 'urine'; */
+    
+    // 禁用编辑
+    const noEdit = /* isDeviceOrTest || */ hasDone || isExpired;
+
+    // 禁用打卡
+    const noPunch = /* isDeviceOrTest || */ hasDone || isPlanned;
     
     return <HiddenViewBox>
       <RowLeftBox>
         {
-          isExpired &&
+          noEdit &&
           <RowViewDisabled css="edit">
             <IconView css="disabled" name={'edit'} size={24}/>
           </RowViewDisabled>
         }
         {
-          !isExpired &&
+          !noEdit &&
           <RowView css="edit">
             <IconView css="edit" name={'edit'} size={24}/>
           </RowView>
@@ -161,18 +175,19 @@ class CalendarSwipeListViewTwo extends React.Component {
       </RowLeftBox>
       <RowRightBox>
         {
-          noPunchFlag &&
+          noPunch &&
           <RowViewDisabled css="punch">
             <IconView css="disabled" name={'check'} size={30}/>
           </RowViewDisabled>
         }
         {
-          !noPunchFlag &&
+          !noPunch &&
           <RowView css="punch">
             <IconView css="punch" name={'pause'} size={30}/>
           </RowView>
         }
-        <RowView css="delete" style={{marginLeft: 8}}>
+        <RowView css="delete" style={{marginLeft: 8}} 
+          onPress={() => this.deleteAction(action, rowMap)}>
           <IconView css="delete" name={'delete'} size={30}/>
         </RowView>
       </RowRightBox>
@@ -193,6 +208,11 @@ class CalendarSwipeListViewTwo extends React.Component {
         <Text style={{color:'rgba(255, 255, 255, .3)', fontSize: 16, marginTop: 8}}>去做点自己感兴趣的事情吧～</Text>
       </NoPediaContainer>
     </View>
+  }
+
+  deleteAction(action, rowMap) {
+    const { id } = action;
+    rowMap[id].closeRow();
   }
 
   onSwipeValueChange = (swipeData) => {

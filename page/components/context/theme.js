@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { useState, useEffect, createContext } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
  

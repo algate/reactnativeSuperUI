@@ -148,10 +148,10 @@ export default ({ navigation }) => {
             }}
             onPress={() => {
               if(item.navigation) {
-                if(item.navigation === 'AnimatedPanResponder') {
-                  Alert.alert('查无此项');
-                  return;
-                }
+                // if(item.navigation === 'AnimatedPanResponder') {
+                //   Alert.alert('查无此项');
+                //   return;
+                // }
                 navigation.navigate(item.navigation)
               } else {
                 Alert.alert('跳转', '没有地址');

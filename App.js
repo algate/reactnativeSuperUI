@@ -13,8 +13,7 @@ import {
   NativeModules,
   LogBox
 } from 'react-native';
-import { DarkTheme,
-  DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import RootStack from './page/config/route';
 
 import { ThemeProvider } from './page/components/context/theme';
@@ -27,12 +26,11 @@ UIManager.setLayoutAnimationEnabledExperimental &&
   UIManager.setLayoutAnimationEnabledExperimental(true);
 
 export default () => {
-  const colorScheme = useColorScheme();
   return (
     <ThemeProvider>
       <ActionSheetProvider>
         <NavigationContainer>
-          <RootStack theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme} />
+          <RootStack/>
         </NavigationContainer>
       </ActionSheetProvider>
     </ThemeProvider>
